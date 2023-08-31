@@ -17,10 +17,7 @@ export default function Home({isUserLoggedIn, currentUserId}) {
 //  Get all books via Book APIs and save to above state variable.
 useEffect(() => {
     getAllBooks()
-    .then(books => books.json())
-    .then(data => {
-        setBooks(data)
-    })
+    .then(response => { setBooks(response.data) })
 
     .catch((error) => error.message)
     
