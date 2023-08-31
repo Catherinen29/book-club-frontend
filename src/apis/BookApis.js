@@ -5,7 +5,7 @@ export const getAllBooks = () => {
 }
 
 export const getOneBook = (id) => {
-    return fetch (`/books/${id}`)
+    return axiosInstance.get(`/books/${id}`)
 }
 
 export const createOneBook = (bookInfo) => {
