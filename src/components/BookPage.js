@@ -50,7 +50,7 @@ const bookReviews = () => {
 useEffect(() => { 
     getBook(id) 
     bookReviews(id)
-}, [reviewList])
+}, [])
 
 // Call the delete book API with the current id as a param. 
 const deleteOneBook = () => {
