@@ -24,12 +24,12 @@ const navigate = useNavigate()
 const getBook = () => {
     // Call book id to get individual book details using book id. 
     getOneBook(id)
-    .then((book) => book.json())
+    // .then((book) => book.json())
     .then((data) => {
         // Set above state to hold book details. 
-        setSingleBook(data)
-        setEditedBook(data)
-        // console.log(data)
+        setSingleBook(data.data)
+        setEditedBook(data.data)
+        console.log(data)
     })
 }
 
