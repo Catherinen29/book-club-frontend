@@ -47,6 +47,7 @@ const submitNewReview = (e) => {
             <button onClick={showForm} className="showFormBtn"> X </button>
         </div>
 
+    {/* Show form is reviewForm state is true */}
     {addReviewForm ? 
         <form className="reviewForm">
             <div className="reviewField">
