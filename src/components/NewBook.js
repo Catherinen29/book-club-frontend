@@ -20,6 +20,7 @@ export default function NewBook({isUserLoggedIn}) {
         console.log(e.target.value)
     }
 
+    // Create a new book & navigate to home page. 
     function submitNewBook(e){
         
         e.preventDefault()
