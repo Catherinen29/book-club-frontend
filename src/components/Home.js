@@ -18,15 +18,8 @@ export default function Home({isUserLoggedIn, currentUserId}) {
 useEffect(() => {
     getAllBooks()
     .then(response => { setBooks(response.data) })
-
     .catch((error) => error.message)
     
-    // console.log("Local storage id:", localStorage.getItem("currentUserId"))
-    // console.log(!!currentUserId)
-    // console.log(isUserLoggedIn)
-    // if (localStorage.getItem("token")) {
-    //     findUserName()
-    // }
     if (isUserLoggedIn && currentUserId){
         findUserName()
     }
@@ -40,11 +33,12 @@ const findUserName = () => {
     .then(response => setCurrentUserName(response))
 }
 
-// Check through books array for each date, looking for the largest date
+// Check through books array for each date, looking for the largest date.
 const findCurrentBook = books.reduce((a, b) => {
     return new Date(a.meeting_date) > new Date(b.meeting_date) ? a : b
 }, {})
 
+// Delete user account by making API call, and clearing localStorage.
 const deleteAccount = () => {
    
     deleteUser(parseInt(localStorage.getItem("currentUserId")))
@@ -55,7 +49,10 @@ const deleteAccount = () => {
 
 return(
 <div className='home'>
+    
+    {/* Show/limit details depending on whether user is logged in. */}
     <div className='welcome'>
+        
         {!isUserLoggedIn ? 
             <h1>Hello Readers</h1>
             :
@@ -98,6 +95,7 @@ return(
 
     <div> 
         <h2 className='allBooksHeader'>All books</h2>
+        {/* Show all books */}
         <div class="allBooksContainer">
             {/* Map over all outputs from above call. */}
             {books.map((book, index) => <div><EachBookDetails 
