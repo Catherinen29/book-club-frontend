@@ -7,16 +7,18 @@ export default function Login({
     isLoggedIn, setIsUserLoggedIn, currentUserId, setCurrentUserId}) {
 
 
-    const [user, setUser] = useState({
+const [user, setUser] = useState({
         email: "",
         password: ""
     })
-    const navigate = useNavigate()
+
+const navigate = useNavigate()
 
 function handleInput(e){
     setUser({...user, [e.target.name]: e.target.value})
 }
 
+// Create a session using user input & navigate to the home page. 
 function findUser(e){
     e.preventDefault()
     createUserToken(user, setCurrentUserId)
