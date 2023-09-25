@@ -2,6 +2,7 @@ import axios from 'axios';
 import axiosInstance from './AxiosInstance';
 import {updateToken} from '../components/NavBar';
 
+// GET request for users based on ID
 export const getUser = async(id) => {
   console.log(id)
   const response = await axiosInstance.get(`/users/${id}`, {
@@ -14,9 +15,11 @@ export const getUser = async(id) => {
 
   return response.data
 }
-    
+
+// Create a new user
 export const createUser = (userInfo) => {
 
+  // Create an object using input data in the format required.
   const newUser = JSON.stringify({"user": {
       "username": `${userInfo.username}`,
       "firstname": `${userInfo.firstname}`,
@@ -26,14 +29,16 @@ export const createUser = (userInfo) => {
     }
   })
   console.log(newUser)
-    const response = axiosInstance.post(`/signup`, newUser, {
-        headers: {"Content-Type": "application/json"}})
-        .then((response) => console.log(response))
-        .catch((error) => console.log(`This is the error: ${error}`))
+
+  // POST request using new object with user details
+  const response = axiosInstance.post(`/signup`, newUser, {
+      headers: {"Content-Type": "application/json"}})
+      .then((response) => console.log(response))
+      .catch((error) => console.log(`This is the error: ${error}`))
 
 }
 
-
+// Create a new user session at user log in
 export const createUserToken = (userInfo, setCurrentUserId) => {
   
   const userDetails = JSON.stringify({"user": {
@@ -41,6 +46,8 @@ export const createUserToken = (userInfo, setCurrentUserId) => {
     "password": `${userInfo.password}`
   }})
   // console.log(userDetails)
+
+  // POST request to set localStorage with current user data
     const response = axiosInstance.post(`/login`, userDetails, {
       headers: {"Content-Type": "application/json"}})
       // console.log(response.headers)
@@ -55,9 +62,7 @@ export const createUserToken = (userInfo, setCurrentUserId) => {
       .catch((error) => console.log(`This is the error: ${error}`))
 }
 
-
-// export const getToken = localStorage.getItem("token")
-
+// End session at user log out
 export const removeUserToken = () => {
 // Call the destroy session controller using the 
 // saved token which was created when user signed in. 
@@ -72,6 +77,7 @@ export const removeUserToken = () => {
   // return response.data
 }
 
+// DELETE request to remove user from database
 export const deleteUser = (id) => {
   const response = axiosInstance.delete(`/signup`, {
     headers: { "Content-Type": "application/json",
