@@ -6,9 +6,8 @@ export default function Logout ({setIsUserLoggedIn}) {
 
 const navigate = useNavigate()
 
+// End user session & navigate to home page.
 function logUserOut() {
-    console.log("GOODBYEEEEEE *********")
-    // console.log(getToken)
     removeUserToken()
     setIsUserLoggedIn(false)
     navigate('/')
