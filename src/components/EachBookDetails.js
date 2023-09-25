@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function EachBookDetails({book, isUserLoggedIn}) {
 
+    // For each book API call on Homepage, show the following:
     return(
         // <div>
             <div className="eachBookDetails">
@@ -11,7 +12,6 @@ export default function EachBookDetails({book, isUserLoggedIn}) {
                 <div>By {book.author}</div>
 
                 <br></br>
-                {/* <br></br> */}
 
                 {isUserLoggedIn ? 
                     <Link to={`/books/${book.id}`} 
