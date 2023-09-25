@@ -1,15 +1,18 @@
 import axiosInstance from './AxiosInstance';
 
+// GET request for all books
 export const getAllBooks = () => {
     return axiosInstance.get(`/books`)
 }
 
+// GET request for one book, by ID
 export const getOneBook = (id) => {
     return axiosInstance.get(`/books/${id}`)
 }
 
+// POST request to create book
 export const createOneBook = (bookInfo) => {
-    // debugger;
+    // Create an object using input data in the format required.
     const bookDetails = JSON.stringify({
         "title": bookInfo.title,
         "author": bookInfo.author,
@@ -21,6 +24,7 @@ export const createOneBook = (bookInfo) => {
     })
     console.log(bookDetails)
 
+    // POST request using new object with book details. 
     const response = axiosInstance.post(`/books`, bookDetails, {
         headers: { "Content-Type": "application/json",
         "Authorization": localStorage.getItem("token") 
@@ -30,7 +34,8 @@ export const createOneBook = (bookInfo) => {
 
 }
 
-// New book details and book id are required for the patch request. 
+// PATCH request to edit an existing book
+// Updated book details and book id are required. 
 export const editOneBook = (bookInfo, id) => {
     const bookDetails = JSON.stringify({
         "title": bookInfo.title,
@@ -44,6 +49,7 @@ export const editOneBook = (bookInfo, id) => {
 
     console.log(bookDetails)
 
+    // Using above book details to make patch request. 
     const response = axiosInstance.patch(`/books/${id}`, bookDetails, {
         headers: { "Content-Type": "application/json"
         ,
@@ -53,6 +59,7 @@ export const editOneBook = (bookInfo, id) => {
     .then(response => console.log(JSON.stringify(response)))
 }
 
+// DELETE request to remove book from database
 export const deleteBook = (id) => {
     const response = axiosInstance.delete(`/books/${id}`, {
         headers: { "Content-Type": "application/json",
